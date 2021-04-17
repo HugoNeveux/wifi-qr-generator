@@ -3,7 +3,7 @@
 import qrcode
 
 
-def generate(ssid: str, psk: str, output: str = "wifi_QR.png") -> None:
+def generate(ssid: str, psk: str, output: str = "wifi_QR.png"):
     """
     Generate QR code used to connect to wifi network
 

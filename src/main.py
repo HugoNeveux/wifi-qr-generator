@@ -8,7 +8,7 @@ import sys
 from exceptions import *
 
 
-def print_error(msg: str) -> None:
+def print_error(msg: str):
     """
     Print an error (in red) and exit
 
@@ -19,7 +19,7 @@ def print_error(msg: str) -> None:
     sys.exit(1)
 
 
-def print_success(msg: str) -> None:
+def print_success(msg: str):
     """
     Print msg in green
 
@@ -29,7 +29,7 @@ def print_success(msg: str) -> None:
     print(f"\033[32m{msg}\033[0m")
 
 
-def main() -> None:
+def main():
     parser = agp.ArgumentParser(description="Parse command line arguments")
     parser.add_argument('--output', '-o', type=str, default="wifi_QR.png", help="Output path for QR code")
     parser.add_argument('--ssid', type=str, default=None, help="Create QR code for Wi-Fi with provided SSID.")
