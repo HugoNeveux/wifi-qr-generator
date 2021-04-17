@@ -9,10 +9,12 @@ def generate(ssid: str, psk: str):
 
     :param ssid: network SSID
     :param psk: network password
-    :param output: file name and path
+    :param qr: file name and path
     :return: QR code image object
     """
     data = f"WIFI:S:{ssid};T:WPA;P:{psk};;"
-    img = qrcode.make(data)
+    qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_L)
+    qr.add_data(data)
+    qr.make()
 
-    return img
+    return qr

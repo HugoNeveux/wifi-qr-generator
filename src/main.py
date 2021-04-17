@@ -32,8 +32,12 @@ def main():
     parser.add_argument('--ssid', type=str, default=None, help="Create QR code for Wi-Fi with provided SSID")
     parser.add_argument('--show-password', action='store_true', default=False, help="Print Wi-Fi password")
     parser.add_argument('--input-password', action='store_true', default=False, help="Manually input Wi-Fi password")
-    parser.add_argument('--show-image', action='store_true', default=False, help="Do not show generated QR code")
-    parser.add_argument('--output', '-o', type=str, default="wifi_QR.png", help="Save generated QR code to PATH")
+    parser.add_argument('--output', '-o', type=str, default='wifi_QR.png', help="Save generated QR code to OUTPUT")
+    parser.add_argument('--save-image', action='store_true', default=False, help="Save generated QR code in PNG file")
+    parser.add_argument('--show-image', action='store_true', default=False, help="Show QR code in separate window "
+                                                                                 "instead of printing it in console. "
+                                                                                 "Use this option if the QR code isn't "
+                                                                                 "displayed correctly.")
     args = parser.parse_args()
     ssid, psk = "", ""
 
@@ -59,19 +63,24 @@ def main():
         except DependencyNotFoundError:
             print("This program only works with NetworkManager")
 
-    img = qr.generate(ssid, psk)
-
-    # Save generated QR code
-    img.save(args.output)
-
-    print_success(f"Successfully generated QR code for {ssid} as {args.output}")
+    code = qr.generate(ssid, psk)
+    print_success(f"Successfully generated QR code for {ssid}.\n")
 
     if args.show_password:
         # Print password if asked by user
         print(f"Current password for {ssid} : {psk}")
 
+    if args.save_image:
+        # Save generated QR code
+        code.make_image().save(args.output)
+        print_success(f"QR code image saved as {args.output}")
+
     if args.show_image:
-        img.show()
+        # Show generated QR code as image
+        code.make_image().show()
+    else:
+        # Show generated QR code in terminal
+        code.print_tty()
 
 
 if __name__ == "__main__":
