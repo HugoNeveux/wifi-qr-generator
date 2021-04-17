@@ -40,19 +40,23 @@ def main():
 
     if args.ssid is None:
         try:
-            ssid = wifi.get_ssid()  # Get current network SSID
+            # Get current network SSID
+            ssid = wifi.get_ssid()
         except WifiNotFoundError:
             print_error("The system has no wifi connection; couldn't find current SSID. Please use the --ssid option.")
         except DependencyNotFoundError:
             print_error("This program only works with NetworkManager.")
     else:
-        ssid = args.ssid    # Use provided SSID
+        # Use provided SSID
+        ssid = args.ssid
 
     if args.input_password and args.ssid is not None:
-        psk = input(f"Please enter password for {ssid} :\n")    # Get user input for Wi-Fi password
+        # Get user input for Wi-Fi password
+        psk = input(f"Please enter password for {ssid} :\n")
     else:
         try:
-            psk = wifi.get_psk(ssid)    # Get existing password
+            # Get existing password
+            psk = wifi.get_psk(ssid)
         except DependencyNotFoundError:
             print("This program only works with NetworkManager")
 
@@ -60,7 +64,8 @@ def main():
     print_success(f"Successfully generated QR code for {ssid} as {args.output}")
 
     if args.show_password:
-        print(f"Current password for {ssid} : {psk}")   # Print password if asked by user
+        # Print password if asked by user
+        print(f"Current password for {ssid} : {psk}")
 
 
 if __name__ == "__main__":
