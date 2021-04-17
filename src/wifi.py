@@ -10,7 +10,7 @@ def get_ssid() -> str:
     """
     Get current wifi network SSID using NetworkManager
 
-    :return: str
+    :return: current wifi SSID
     """
     if shutil.which("nmcli") is not None:
         ssid_regex = r"yes:(.*)\n"
@@ -30,8 +30,8 @@ def get_psk(ssid: str) -> str:
     """
     Get wifi password from SSID using nmcli
 
-    :param ssid:
-    :return:
+    :param ssid: wifi SSID
+    :return: wifi password
     """
 
     if shutil.which("nmcli") is not None:
