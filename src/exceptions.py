@@ -9,3 +9,10 @@ class DependencyNotFoundError(Error):
     Exception used to indicate lack of dependency
     """
     pass
+
+
+class WifiNotFoundError(Error):
+    """
+    Exception raised when the system has no wifi connection
+    """
+    pass

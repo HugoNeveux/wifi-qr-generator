@@ -16,7 +16,11 @@ def get_ssid() -> str:
         ssid_regex = r"yes:(.*)\n"
 
         tmp = subprocess.check_output(["nmcli", "-t", "-f", "active,ssid", "dev", "wifi"]).decode('utf8')
-        ssid = re.search(ssid_regex, tmp)[1]
+        search = re.search(ssid_regex, tmp)
+        if search is None:
+            raise WifiNotFoundError("The system has no wifi connection; can't find network SSID.")
+        else:
+            ssid = search[1]
     else:
         raise DependencyNotFoundError("nmcli not found. NetworkManager is required to run this program.")
     return ssid
