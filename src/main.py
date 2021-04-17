@@ -32,31 +32,35 @@ def print_success(msg: str):
 def main():
     parser = agp.ArgumentParser(description="Parse command line arguments")
     parser.add_argument('--output', '-o', type=str, default="wifi_QR.png", help="Output path for QR code")
-    parser.add_argument('--ssid', type=str, default=None, help="Create QR code for Wi-Fi with provided SSID.")
+    parser.add_argument('--ssid', type=str, default=None, help="Create QR code for Wi-Fi with provided SSID")
     parser.add_argument('--show-password', action='store_true', default=False, help="Print Wi-Fi password")
+    parser.add_argument('--input-password', action='store_true', default=False, help="Manually input Wi-Fi password")
     args = parser.parse_args()
     ssid, psk = "", ""
 
     if args.ssid is None:
         try:
-            ssid = wifi.get_ssid()
+            ssid = wifi.get_ssid()  # Get current network SSID
         except WifiNotFoundError:
             print_error("The system has no wifi connection; couldn't find current SSID. Please use the --ssid option.")
         except DependencyNotFoundError:
             print_error("This program only works with NetworkManager.")
     else:
-        ssid = args.ssid
+        ssid = args.ssid    # Use provided SSID
 
-    try:
-        psk = wifi.get_psk(ssid)
-    except DependencyNotFoundError:
-        print("This program only works with NetworkManager")
+    if args.input_password and args.ssid is not None:
+        psk = input(f"Please enter password for {ssid} :\n")    # Get user input for Wi-Fi password
+    else:
+        try:
+            psk = wifi.get_psk(ssid)    # Get existing password
+        except DependencyNotFoundError:
+            print("This program only works with NetworkManager")
 
     qr.generate(ssid, psk, args.output)
     print_success(f"Successfully generated QR code for {ssid} as {args.output}")
 
     if args.show_password:
-        print(f"Current password for {ssid} : {psk}")
+        print(f"Current password for {ssid} : {psk}")   # Print password if asked by user
 
 
 if __name__ == "__main__":
