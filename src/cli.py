@@ -2,10 +2,9 @@
 # coding: utf8
 
 import argparse as agp
-import wifi
-import qr
 import sys
-from exceptions import *
+from src.exceptions import *
+from src import nmtuils, wifiqr
 
 
 def print_error(msg: str):
@@ -44,7 +43,7 @@ def main():
     if args.ssid is None:
         try:
             # Get current network SSID
-            ssid = wifi.get_ssid()
+            ssid = nmtuils.get_ssid()
         except WifiNotFoundError:
             print_error("The system has no wifi connection; couldn't find current SSID. Please use the --ssid option.")
         except DependencyNotFoundError:
@@ -59,11 +58,11 @@ def main():
     else:
         try:
             # Get existing password
-            psk = wifi.get_psk(ssid)
+            psk = nmtuils.get_psk(ssid)
         except DependencyNotFoundError:
             print("This program only works with NetworkManager")
 
-    code = qr.generate(ssid, psk)
+    code = wifiqr.generate(ssid, psk)
     print_success(f"Successfully generated QR code for {ssid}.\n")
 
     if args.show_password:
