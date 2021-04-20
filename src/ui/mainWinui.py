@@ -109,8 +109,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.customPasswordInput.returnPressed.connect(self.createQr.click)
-        self.createQr.clicked.connect(MainWindow.createCustomQR)
         self.customSsidInput.returnPressed.connect(self.customPasswordInput.setFocus)
+        self.createQr.clicked.connect(MainWindow.create_custom_qr)
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi

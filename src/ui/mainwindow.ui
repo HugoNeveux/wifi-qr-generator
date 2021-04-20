@@ -173,22 +173,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>createQr</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>createCustomQR()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>877</x>
-     <y>214</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>922</x>
-     <y>425</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>customSsidInput</sender>
    <signal>returnPressed()</signal>
    <receiver>customPasswordInput</receiver>
@@ -204,8 +188,24 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>createQr</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>create_custom_qr()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>846</x>
+     <y>211</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>921</x>
+     <y>231</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
-  <slot>createCustomQR()</slot>
+  <slot>create_custom_qr()</slot>
  </slots>
 </ui>
