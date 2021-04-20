@@ -1,6 +1,11 @@
 # wifi-qr-generator
 Generate wifi Qr Code on Linux
 
+## Installation
+
+Python dependancies : see requirements.txt
+System depandancies : libopengl0 (install with apt : `sudo apt-get install libopengl0`)
+
 ## Usage
 
 ```
