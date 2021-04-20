@@ -8,7 +8,6 @@ from PySide6.QtUiTools import QUiLoader
 from PySide6.QtGui import QImage, QPixmap, QPainter
 from PySide6.QtWidgets import QApplication, QPushButton, QLineEdit, QMainWindow, QLabel, QWidget, QVBoxLayout
 from PySide6.QtCore import QFile, Qt
-# TODO: add libopengl0 to system requirements
 
 
 class Image(qrcode.image.base.BaseImage):
