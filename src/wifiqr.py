@@ -9,7 +9,6 @@ def generate(ssid: str, psk: str):
 
     :param ssid: network SSID
     :param psk: network password
-    :param qr: file name and path
     :return: QR code image object
     """
     data = f"WIFI:S:{ssid};T:WPA;P:{psk};;"

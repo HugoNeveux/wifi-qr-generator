@@ -1,1 +1,2 @@
 qrcode~=6.1
+PySide6~=6.0.3
