@@ -20,4 +20,5 @@ class MainWin(QMainWindow):
         img = wifiqr.generate(ssid, password).make_image(image_factory=Image)
 
         qr_dialog = QRDialog(img)
+        qr_dialog.setWindowTitle(f"QR code for {ssid}")
         res = qr_dialog.exec_()

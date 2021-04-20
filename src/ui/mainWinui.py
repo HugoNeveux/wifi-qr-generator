@@ -116,7 +116,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"QR code creator", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Registered networks", None))
         self.GenerateFromListButton.setText(QCoreApplication.translate("MainWindow", u"Create QR code for selection", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"Custom", None))
